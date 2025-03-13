@@ -4,19 +4,19 @@ A simple and interactive **Bollywood Movie Recommender System** built with **Pyt
 
 ### 📂 Project Structure
 
-├── app.py               # Main Python app with recommendation logic
-├── BollywoodMovies.csv  # Dataset of Bollywood movies
-├── CheckData.py         # Script to explore and validate the dataset
-├── styles.py            # Style code for UI (if using Streamlit or similar)
-├── requirements.txt     # Required Python libraries
+├── app.py               # Main Python app with recommendation logic<br>
+├── BollywoodMovies.csv  # Dataset of Bollywood movies<br>
+├── CheckData.py         # Script to explore and validate the dataset<br>
+├── styles.py            # Style code for UI (if using Streamlit or similar)<br>
+├── requirements.txt     # Required Python libraries<br>
 └── README.md            # Project documentation
 
 ### 📌 Features
 
-✅ Recommend similar Bollywood movies using TF-IDF Vectorization and KNN algorithm
-✅ Analyze and explore the Bollywood movies dataset.
-✅ Styled interface using Streamlit and custom CSS
-✅ Pagination for viewing more recommendations
+✅ Recommend similar Bollywood movies using TF-IDF Vectorization and KNN algorithm<br>
+✅ Analyze and explore the Bollywood movies dataset<br>
+✅ Styled interface using Streamlit and custom CSS<br>
+✅ Pagination for viewing more recommendations<br>
 ✅ Clean, user-friendly UI with responsive design
 
 ### 🗂️ Dataset
