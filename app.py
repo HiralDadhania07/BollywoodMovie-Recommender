@@ -2,17 +2,21 @@ import streamlit as st
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
+from styles import load_css
 
-# ----------------------------
-# Load External CSS
-# ----------------------------
-def load_css():
-    with open("styles.css", "r") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# ---------------------------- 
+# Streamlit Page Config - THIS MUST BE FIRST!
+# ---------------------------- 
+st.set_page_config(page_title="Bollywood Movie Recommender", page_icon="🎬", layout="centered")
 
-# ----------------------------
-# Load and preprocess dataset
-# ----------------------------
+# ---------------------------- 
+# Load External CSS 
+# ---------------------------- 
+st.markdown(load_css(), unsafe_allow_html=True)
+
+# ---------------------------- 
+# Load and preprocess dataset 
+# ---------------------------- 
 @st.cache_data
 def load_data():
     df = pd.read_csv('BollywoodMovies.csv')
@@ -69,9 +73,9 @@ def recommend_movies_knn(movie_title, df, knn_model, tfidf_matrix, n_recommendat
 
     return recommended_movies
 
-# ----------------------------
-# Render Movie Card
-# ----------------------------
+# ---------------------------- 
+# Render Movie Card 
+# ---------------------------- 
 def render_movie_card(rec):
     st.markdown(f"""
         <div class="movie-card">
@@ -83,27 +87,17 @@ def render_movie_card(rec):
         </div>
     """, unsafe_allow_html=True)
 
-# ----------------------------
-# Streamlit Web App Interface
-# ----------------------------
+# ---------------------------- 
+# Streamlit Web App Interface 
+# ---------------------------- 
 def main():
-    # st.set_page_config(page_title="Bollywood Movie Recommender", layout="centered")
-
-    # load_css()
-    st.set_page_config(page_title="Bollywood Movie Recommender", page_icon="🎬", layout="centered")
-
-    load_css()  # Load the external CSS file
-    
-    # Add this header block after load_css()
+    # Header block after CSS is loaded
     st.markdown("""
         <div class="header-container">
             <h1 class="main-title">🎬 Bollywood Movie Recommender</h1>
             <p class="subtitle">✨ Discover movies similar to your favorite!</p>
         </div>
     """, unsafe_allow_html=True)
-
-    # st.title("🎬 Bollywood Movie Recommender")
-    # st.write("This app recommends similar Bollywood movies based on your favorite movie! ✨")
 
     df = load_data()
     if df is None:
@@ -113,7 +107,6 @@ def main():
 
     movie_list = df['title'].sort_values().unique()
     selected_movie = st.selectbox("Select a movie you like:", movie_list)
-    
 
     if 'recommendations' not in st.session_state:
         st.session_state['recommendations'] = []
@@ -138,13 +131,10 @@ def main():
 
         # Wrap the cards in a container
         st.markdown("<div class='recommendations-container'>", unsafe_allow_html=True)
-        
+
         total_recommendations = len(recommendations)
         total_pages = (total_recommendations + recommendations_per_page - 1) // recommendations_per_page
         current_page = st.session_state['current_page']
-
-        # After rendering all movie cards, close the container
-        st.markdown("</div>", unsafe_allow_html=True)
 
         start_idx = (current_page - 1) * recommendations_per_page
         end_idx = start_idx + recommendations_per_page
@@ -152,6 +142,8 @@ def main():
 
         for rec in paginated_recommendations:
             render_movie_card(rec)
+
+        st.markdown("</div>", unsafe_allow_html=True)
 
         col1, col2, col3 = st.columns([1, 2, 1])
 
