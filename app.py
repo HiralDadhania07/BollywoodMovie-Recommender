@@ -88,10 +88,10 @@ def render_movie_card(rec):
     """, unsafe_allow_html=True)
 
 # ---------------------------- 
-# Streamlit Web App Interface 
+# Streamlit Web App 
 # ---------------------------- 
 def main():
-    # Header block after CSS is loaded
+    # Header block
     st.markdown("""
         <div class="header-container">
             <h1 class="main-title">🎬 Bollywood Movie Recommender</h1>
@@ -129,7 +129,7 @@ def main():
     if recommendations:
         st.success(f"Recommendations similar to **{selected_movie}**:")
 
-        # Wrap the cards in a container
+        # Cards in a container
         st.markdown("<div class='recommendations-container'>", unsafe_allow_html=True)
 
         total_recommendations = len(recommendations)

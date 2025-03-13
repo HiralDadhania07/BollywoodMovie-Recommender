@@ -104,7 +104,6 @@ def load_css():
         transform: translateY(1px);
     }
 
-    /* Pagination page info */
     .page-info {
         text-align: center;
         font-size: 16px;
